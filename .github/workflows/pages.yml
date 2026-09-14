@@ -21,31 +21,27 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           cache: npm
           cache-dependency-path: web/package-lock.json
       - name: Install and build showcase app
         working-directory: web
         env:
-          # Root base so styles load on custom domain (and on github.io after domain redirect).
-          VITE_BASE: /
+          # Project Pages URL: https://agent5479.github.io/sollys/
+          VITE_BASE: /sollys/
           VITE_SHOWCASE_MODE: "true"
         run: |
           npm ci
           npm run build
-      - name: Verify custom-domain root assets
+      - name: Verify project-pages assets
         working-directory: web
         run: |
           test -f dist/index.html
           test -f dist/404.html
           test -f dist/.nojekyll
-          test -f dist/CNAME
-          grep -q 'www.sollys.co.nz' dist/CNAME
-          grep -q 'href="/assets/' dist/index.html
-          grep -q 'src="/assets/' dist/index.html
-          ! grep -q '/sollys/assets/' dist/index.html
-          ! grep -q 'github.io' dist/robots.txt
-          ! grep -q 'github.io' dist/sitemap.xml
+          test ! -f dist/CNAME
+          grep -q 'href="/sollys/assets/' dist/index.html
+          grep -q 'src="/sollys/assets/' dist/index.html
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -60,9 +56,3 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
-      - name: Keep custom domain on Pages
-        continue-on-error: true
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          echo '{"cname":"www.sollys.co.nz"}' | gh api --method PUT repos/${{ github.repository }}/pages --input -

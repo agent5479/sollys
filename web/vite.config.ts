@@ -2,11 +2,10 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 /**
- * Custom domain (www.sollys.co.nz) serves from site root.
- * Keep base `/` so CSS/JS resolve at /assets/… — not /sollys/assets/…
- * (project-pages path breaks once the domain is applied).
+ * GitHub project Pages serves at https://<user>.github.io/<repo>/.
+ * Override with VITE_BASE=/ for a custom domain at site root.
  */
-const base = process.env.VITE_BASE ?? "/";
+const base = process.env.VITE_BASE ?? "/sollys/";
 
 export default defineConfig({
   plugins: [react()],
