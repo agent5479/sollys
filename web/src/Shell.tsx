@@ -29,7 +29,7 @@ export function Shell({
       {noindex ? <meta name="robots" content="noindex,follow" /> : null}
       <header className="site-header">
         <Link className="brand-mark" to={user ? homeFor(user.claim) : "/"}>
-          <img src="/brand/logo-light.svg" alt="" />
+          <img src={`${import.meta.env.BASE_URL}brand/logo-light.svg`} alt="" />
           <strong>{brand.shortName}</strong>
         </Link>
         <nav>
