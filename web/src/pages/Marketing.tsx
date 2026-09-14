@@ -53,7 +53,8 @@ export function MarketingPage() {
           <div className="demo-note">
             Showcase — real-time location for consignments and trucks. Your existing freight system
             stays in charge of jobs; we add where things are. Firestore and live telematics stay
-            placeholders for now.
+            placeholders for now. Live camera scan and demo label / track QRs are on Driver and
+            Track.
           </div>
         </div>
       </section>

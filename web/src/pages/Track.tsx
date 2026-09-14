@@ -2,9 +2,11 @@ import { FormEvent, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Shell } from "../Shell";
 import { MapPins } from "../MapPins";
+import { DemoQr } from "../DemoQr";
 import { connector } from "../shared/connectors";
 import type { TrackingView } from "../shared/types";
 import { loadState } from "../shared/store";
+import { DEMO_LABEL_CODES, trackPageUrl } from "../shared/scanPayload";
 
 export function TrackPage() {
   const [params, setParams] = useSearchParams();
@@ -13,11 +15,14 @@ export function TrackPage() {
   const [view, setView] = useState<TrackingView | null>(null);
   const [error, setError] = useState("");
   const [looked, setLooked] = useState(false);
+  const [qrCode, setQrCode] = useState(initial);
 
   const depotName = useMemo(() => {
     const depots = loadState().depots;
     return (id: string) => depots.find((d) => d.id === id)?.name ?? id;
   }, []);
+
+  const customerQrValue = useMemo(() => trackPageUrl(qrCode), [qrCode]);
 
   async function lookup(nextCode: string) {
     setError("");
@@ -29,6 +34,7 @@ export function TrackPage() {
       return;
     }
     setView(result);
+    setQrCode(result.consignment.trackingCode);
     setParams({ code: result.consignment.trackingCode });
   }
 
@@ -52,12 +58,19 @@ export function TrackPage() {
           <h1 className="display">Where is my freight?</h1>
           <p className="muted">Enter the label code. No login required.</p>
           <div className="try-chips">
-            <button type="button" className="chip" onClick={() => { setCode("SL-4821"); void lookup("SL-4821"); }}>
-              Try SL-4821
-            </button>
-            <button type="button" className="chip" onClick={() => { setCode("SL-4823"); void lookup("SL-4823"); }}>
-              Try SL-4823
-            </button>
+            {DEMO_LABEL_CODES.map((c) => (
+              <button
+                key={c}
+                type="button"
+                className="chip"
+                onClick={() => {
+                  setCode(c);
+                  void lookup(c);
+                }}
+              >
+                Try {c}
+              </button>
+            ))}
           </div>
           <form className="card track-form" onSubmit={onSubmit}>
             <div className="field">
@@ -78,6 +91,27 @@ export function TrackPage() {
               <p className="muted">Nothing found for that code.</p>
             ) : null}
           </form>
+
+          <div className="demo-track-qr">
+            <DemoQr
+              value={customerQrValue}
+              label="Customer track link"
+              caveat="Showcase sticker — scan to open this tracking page on another phone."
+            />
+            <div className="try-chips">
+              {DEMO_LABEL_CODES.map((c) => (
+                <button
+                  key={c}
+                  type="button"
+                  className={`chip ${qrCode === c ? "is-active" : ""}`}
+                  onClick={() => setQrCode(c)}
+                >
+                  QR for {c}
+                </button>
+              ))}
+            </div>
+          </div>
+
           {view ? (
             <div className="grid-2 track-result">
               <div className="card">

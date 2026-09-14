@@ -375,6 +375,89 @@ input, textarea, select {
   font-weight: 600;
 }
 
+.perm-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: end center;
+  padding: 1rem;
+  background: rgba(15, 26, 14, 0.55);
+}
+.perm-sheet-card {
+  width: min(420px, 100%);
+  background: #fff;
+  border-radius: 16px 16px 12px 12px;
+  padding: 1.25rem 1.25rem 1.35rem;
+  box-shadow: 0 -12px 40px rgba(15, 26, 14, 0.25);
+}
+.perm-sheet-card h2 {
+  font-family: Oswald, sans-serif;
+  font-size: 1.45rem;
+  margin: 0.2rem 0 0.65rem;
+  line-height: 1.15;
+}
+.perm-sheet-card p { margin: 0 0 0.75rem; }
+.perm-caveat {
+  font-size: 0.88rem;
+  color: var(--muted);
+  padding: 0.65rem 0.75rem;
+  background: #f3f5ea;
+  border-radius: 8px;
+}
+.perm-actions {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.demo-label-panel {
+  margin-top: 1.25rem;
+}
+.demo-label-body {
+  margin-top: 0.85rem;
+  display: grid;
+  gap: 0.75rem;
+  justify-items: start;
+}
+.demo-qr {
+  margin: 0;
+  display: grid;
+  gap: 0.65rem;
+  justify-items: start;
+}
+.demo-qr-frame {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.5rem;
+  display: grid;
+  place-items: center;
+}
+.demo-qr-frame svg { display: block; width: 100%; height: auto; }
+.demo-qr figcaption {
+  display: grid;
+  gap: 0.2rem;
+  max-width: 28ch;
+}
+.demo-qr-value {
+  font-family: Oswald, sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  word-break: break-all;
+}
+.demo-qr-caveat { font-size: 0.85rem; }
+.demo-track-qr {
+  margin: 1.25rem 0 0;
+  display: grid;
+  gap: 0.75rem;
+  justify-items: start;
+}
+.chip.is-active {
+  border-color: var(--primary);
+  background: #eef3d4;
+}
+
 .app-footer {
   display: flex;
   justify-content: space-between;

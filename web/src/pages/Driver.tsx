@@ -5,19 +5,27 @@ import { currentUser } from "../session";
 import { connector, flushPendingScans } from "../shared/connectors";
 import { loadState, subscribe } from "../shared/store";
 import { ROUTE_POINTS } from "../shared/seeds";
+import { DEMO_LABEL_CODES } from "../shared/scanPayload";
 import { MapPins } from "../MapPins";
+import { DemoQr } from "../DemoQr";
+import { startCodeScan } from "../scanLoop";
 
 type Phase = "idle" | "camera" | "done";
+type CamPrompt = "none" | "ask" | "denied";
 
 export function DriverPage() {
   const user = currentUser();
   const videoRef = useRef<HTMLVideoElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
+  const stopScanRef = useRef<(() => void) | null>(null);
   const [code, setCode] = useState("");
   const [phase, setPhase] = useState<Phase>("idle");
   const [status, setStatus] = useState("");
   const [busy, setBusy] = useState(false);
   const [showManual, setShowManual] = useState(false);
+  const [showDemoLabel, setShowDemoLabel] = useState(false);
+  const [demoLabel, setDemoLabel] = useState<string>(DEMO_LABEL_CODES[0]);
+  const [camPrompt, setCamPrompt] = useState<CamPrompt>("none");
   const [online, setOnline] = useState(typeof navigator === "undefined" ? true : navigator.onLine);
   const [tick, setTick] = useState(0);
 
@@ -47,6 +55,8 @@ export function DriverPage() {
   void tick;
 
   function stopCamera() {
+    stopScanRef.current?.();
+    stopScanRef.current = null;
     streamRef.current?.getTracks().forEach((t) => t.stop());
     streamRef.current = null;
     if (videoRef.current) videoRef.current.srcObject = null;
@@ -100,50 +110,47 @@ export function DriverPage() {
     }
   }
 
-  async function startCamera() {
+  function requestCamera() {
+    setStatus("");
+    setCamPrompt("ask");
+  }
+
+  async function allowCamera() {
+    setCamPrompt("none");
     setStatus("");
     setPhase("camera");
     try {
+      if (!navigator.mediaDevices?.getUserMedia) {
+        throw new Error("unsupported");
+      }
       const stream = await navigator.mediaDevices.getUserMedia({
         video: { facingMode: { ideal: "environment" } },
         audio: false,
       });
       streamRef.current = stream;
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-        await videoRef.current.play();
+      const video = videoRef.current;
+      if (video) {
+        video.srcObject = stream;
+        await video.play();
+        stopScanRef.current = await startCodeScan(video, (scanned) => {
+          setCode(scanned);
+          stopCamera();
+          setPhase("idle");
+          setStatus("Code read — tap Tag location");
+        });
       }
-      const Detector = window.BarcodeDetector;
-      if (!Detector) {
-        setShowManual(true);
-        setStatus("Type the code — this browser can’t read barcodes.");
-        return;
-      }
-      const detector = new Detector({ formats: ["code_128", "qr_code", "ean_13", "code_39"] });
-      const loop = async () => {
-        if (!streamRef.current || !videoRef.current) return;
-        if (videoRef.current.readyState >= 2) {
-          try {
-            const codes = await detector.detect(videoRef.current);
-            if (codes[0]?.rawValue) {
-              setCode(codes[0].rawValue.toUpperCase());
-              stopCamera();
-              setPhase("idle");
-              setStatus("Code read — tap Tag location");
-              return;
-            }
-          } catch {
-            /* keep scanning */
-          }
-        }
-        requestAnimationFrame(loop);
-      };
-      requestAnimationFrame(loop);
     } catch {
+      stopCamera();
       setPhase("idle");
       setShowManual(true);
-      setStatus("Camera blocked — type the code instead.");
+      setCamPrompt("denied");
     }
+  }
+
+  function dismissCamPrompt() {
+    setCamPrompt("none");
+    setShowManual(true);
+    setStatus("Type the code instead.");
   }
 
   function onManual(e: FormEvent) {
@@ -157,12 +164,62 @@ export function DriverPage() {
     setPhase("idle");
     setStatus("");
     setShowManual(false);
+    setCamPrompt("none");
   }
 
   return (
     <Shell noindex variant="app">
       {!online ? (
         <div className="banner">Offline — tags save on this phone until signal returns.</div>
+      ) : null}
+
+      {camPrompt !== "none" ? (
+        <div className="perm-sheet" role="dialog" aria-modal="true" aria-labelledby="cam-perm-title">
+          <div className="perm-sheet-card">
+            {camPrompt === "ask" ? (
+              <>
+                <p className="kicker">Camera access</p>
+                <h2 id="cam-perm-title">Allow camera to scan labels</h2>
+                <p>
+                  Sollys needs the camera to read the consignment code on the label, then you tag
+                  GPS from this phone.
+                </p>
+                <p className="perm-caveat">
+                  Showcase — in a native app this would be the OS permission prompt. On the web,
+                  your browser asks next.
+                </p>
+                <div className="perm-actions">
+                  <button className="btn btn-ink btn-block" type="button" onClick={() => void allowCamera()}>
+                    Allow camera
+                  </button>
+                  <button className="btn btn-line btn-block" type="button" onClick={dismissCamPrompt}>
+                    Type code instead
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <p className="kicker">Camera blocked</p>
+                <h2 id="cam-perm-title">Turn on camera for this site</h2>
+                <p>
+                  The browser blocked the camera. Open site settings (lock icon in the address bar),
+                  allow Camera, then try again. Use HTTPS or localhost for a live demo.
+                </p>
+                <p className="perm-caveat">
+                  Showcase — a shipped app would deep-link into system Settings for this permission.
+                </p>
+                <div className="perm-actions">
+                  <button className="btn btn-ink btn-block" type="button" onClick={() => void allowCamera()}>
+                    Try camera again
+                  </button>
+                  <button className="btn btn-line btn-block" type="button" onClick={dismissCamPrompt}>
+                    Type code instead
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
       ) : null}
 
       <section className="driver-screen">
@@ -245,7 +302,7 @@ export function DriverPage() {
             </>
           ) : (
             <>
-              <button className="btn btn-ink btn-block" type="button" onClick={() => void startCamera()}>
+              <button className="btn btn-ink btn-block" type="button" onClick={requestCamera}>
                 Open camera
               </button>
               <button
@@ -291,6 +348,37 @@ export function DriverPage() {
             />
           </form>
         ) : null}
+
+        <div className="demo-label-panel">
+          <button
+            type="button"
+            className="linkish"
+            onClick={() => setShowDemoLabel((v) => !v)}
+          >
+            {showDemoLabel ? "Hide demo label" : "Show demo label QR"}
+          </button>
+          {showDemoLabel ? (
+            <div className="demo-label-body">
+              <div className="try-chips">
+                {DEMO_LABEL_CODES.map((c) => (
+                  <button
+                    key={c}
+                    type="button"
+                    className={`chip ${demoLabel === c ? "is-active" : ""}`}
+                    onClick={() => setDemoLabel(c)}
+                  >
+                    {c}
+                  </button>
+                ))}
+              </div>
+              <DemoQr
+                value={demoLabel}
+                label="Demo freight label"
+                caveat="Showcase stand-in for a printed label — scan with another phone, or print this QR."
+              />
+            </div>
+          ) : null}
+        </div>
 
         <div className="driver-map">
           <h2>Your trail</h2>
