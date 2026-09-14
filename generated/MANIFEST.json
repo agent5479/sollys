@@ -1,0 +1,38 @@
+{
+  "generatedAt": "2026-09-14T10:14:15.550Z",
+  "brand": "Sollys",
+  "firebaseProjectId": "sollys-prod",
+  "inKitAssets": {
+    "logoLight": "public/brand/logo-light.svg",
+    "logoDark": "public/brand/logo-dark.svg",
+    "favicon": "public/brand/favicon.svg",
+    "appIcon": "public/brand/sollys-logo-source.png",
+    "logoWidth": 160,
+    "logoHeight": 32
+  },
+  "hostMap": null,
+  "files": [
+    "theme\\theme-sollys.css",
+    "env\\root.env.example",
+    "env\\apps.env.example",
+    "env\\functions.params.example.env",
+    "apps-script\\script-properties.json",
+    "client-pack\\brand.ts",
+    "seo\\robots.txt",
+    "seo\\sitemap.xml",
+    "seo\\json-ld.local-business.json",
+    "seo\\meta\\index.html",
+    "seo\\meta\\track.html",
+    "seo\\llms.txt",
+    "seeds\\catalog.seed.json",
+    "seeds\\README.md",
+    "brand-assets\\README.md",
+    "REBRAND_PROMPT.md",
+    "brand-assets\\app-icon.png",
+    "brand-assets\\favicon.ico",
+    "brand-assets\\logo-dark.svg",
+    "brand-assets\\logo-light.svg",
+    "brand-assets\\README.md"
+  ],
+  "note": "Apply aid after §L3 interview; toolkit assets are self-contained."
+}

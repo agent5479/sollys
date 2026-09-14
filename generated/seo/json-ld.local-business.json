@@ -1,0 +1,19 @@
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Sollys",
+  "url": "https://www.sollys.co.nz",
+  "email": "sales@sollys.co.nz",
+  "telephone": "+64 3 525 9843",
+  "image": "https://www.sollys.co.nz/brand/og-default.svg",
+  "description": "Scan consignments on the phone, tag GPS from the cab, and look up where freight is — replacing paper locating across Sollys South Island depots.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "98A Commercial Street, Takaka 7110"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -40.8536,
+    "longitude": 172.8076
+  }
+}

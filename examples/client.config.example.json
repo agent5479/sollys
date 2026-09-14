@@ -1,0 +1,184 @@
+{
+  "brand": {
+    "name": "Acme Movement Studio",
+    "shortName": "Acme",
+    "tagline": "Move with intent",
+    "hashtag": "#AcmeMove",
+    "voice": "Warm, direct, coach-like. Avoid corporate jargon.",
+    "voiceSamples": [
+      "Book your week. Show up. We'll handle the rest.",
+      "Questions? Reply to this email — a real human reads it."
+    ],
+    "contactName": "Alex Rivera",
+    "contactRole": "Founder / Coach",
+    "contactBio": [],
+    "legalEntityName": "Acme Movement Ltd",
+    "copyrightText": "© Acme Movement Ltd",
+    "notifyEmail": "hello@acme.example",
+    "phone": "+64 21 555 0100",
+    "phoneHref": "tel:+64215550100",
+    "social": {
+      "instagram": "https://instagram.com/acme.example",
+      "facebook": "https://facebook.com/acme.example"
+    },
+    "venues": [
+      {
+        "name": "Acme Studio — Ponsonby",
+        "address": "12 Example St, Ponsonby, Auckland 1011",
+        "geo": { "lat": -36.8485, "lng": 174.7633 }
+      }
+    ],
+    "origin": "https://www.acme.example",
+    "appBase": "/app/",
+    "assets": {
+      "logoLight": "templates/brand/logo-light.svg",
+      "logoDark": "templates/brand/logo-dark.svg",
+      "favicon": "templates/brand/favicon.ico",
+      "appIcon": "templates/brand/app-icon.png",
+      "logoWidth": 48,
+      "logoHeight": 48
+    }
+  },
+  "style": {
+    "themeClass": "theme-acme",
+    "ink": "#1A1A1A",
+    "paper": "#F7F5F2",
+    "muted": "#6B6560",
+    "line": "#D9D2C9",
+    "accent": "#C45C26",
+    "primary": "#C45C26",
+    "secondary": "#6B6560",
+    "fonts": {
+      "display": "Fraunces",
+      "body": "Source Sans 3",
+      "source": "Google Fonts"
+    },
+    "radii": "marketing square; app cards 8px",
+    "motion": "200ms ease-out fades",
+    "logoPath": "templates/brand/logo-light.svg",
+    "ogImagePath": "assets/og-default.jpg",
+    "iconApproach": "currentColor inline SVG"
+  },
+  "language": {
+    "roleLabels": {
+      "admin": "Owner",
+      "trainer": "Coach",
+      "member": "Member"
+    },
+    "paymentInstructions": "Pay by bank transfer to Acme Movement Ltd. Reference your member name.",
+    "classCatalog": []
+  },
+  "locale": {
+    "timeZone": "Pacific/Auckland",
+    "locale": "en-NZ",
+    "currency": "NZD",
+    "functionsRegion": "australia-southeast1",
+    "operatingHours": "Mon–Fri 06:00–20:00; Sat 08:00–12:00",
+    "seasonsNotes": "Fill at engagement — no regional term tables in toolkit defaults",
+    "seasonModel": {
+      "mode": "manual",
+      "notes": ""
+    }
+  },
+  "infra": {
+    "googleAccount": "ops@acme.example",
+    "calendarStrategy": "New shared studio calendar; public subscribe URL via callable",
+    "firebaseProjectId": "acme-studio-prod",
+    "hosting": {
+      "provider": "GitHub Pages",
+      "customDomain": "www.acme.example",
+      "dnsOwner": "Client IT"
+    },
+    "aiCrawlerPolicy": {
+      "allowCitationBots": true,
+      "disallowTrainingBots": true,
+      "notes": "Allow GPTBot citation; disallow CCBot training scrapes"
+    },
+    "signInPath": "signin/",
+    "callableOrigins": [
+      "https://www.acme.example",
+      "http://localhost:5173",
+      "http://127.0.0.1:5173"
+    ],
+    "packageIdentity": {
+      "npmRoot": "acme",
+      "npmApps": "acme-apps",
+      "npmFunctions": "acme-functions",
+      "sharedAlias": "@acme/shared"
+    }
+  },
+  "seo": {
+    "siteTitle": "Acme Movement Studio | Auckland",
+    "siteDescription": "Small-group coaching and drop-in sessions in Ponsonby, Auckland.",
+    "defaultOgImage": "/assets/og-default.jpg",
+    "twitterHandle": "@acme.example",
+    "routes": [
+      {
+        "path": "/",
+        "title": "Acme Movement Studio | Auckland",
+        "description": "Small-group coaching and drop-in sessions in Ponsonby, Auckland."
+      },
+      {
+        "path": "/timetable/",
+        "title": "Timetable | Acme Movement Studio",
+        "description": "Public weekly timetable for Acme Movement Studio."
+      },
+      {
+        "path": "/contact/",
+        "title": "Contact | Acme Movement Studio",
+        "description": "Get in touch with Acme Movement Studio."
+      }
+    ]
+  },
+  "templateLineage": {
+    "upstreamRepo": "https://github.com/example/booking-product-core",
+    "upstreamCommit": "abc1234def5678901234567890abcdef12345678",
+    "toolkitVersion": "0.1.0",
+    "forkedAt": "2026-09-07T00:00:00.000Z"
+  },
+  "features": {
+    "stack": "booking",
+    "surfaces": {
+      "marketing": true,
+      "memberApp": true,
+      "staffConsole": true,
+      "emailCalendar": true,
+      "manualPayments": true
+    },
+    "mPatterns": ["M22", "M23"],
+    "terminology": {
+      "admin": "Owner",
+      "trainer": "Coach",
+      "member": "Member"
+    },
+    "assumptionsAuthorized": false,
+    "infraBoundaryConfirmed": true
+  },
+  "productCore": {
+    "marketing": true,
+    "memberApp": true,
+    "staffConsole": true,
+    "sharedClient": true,
+    "functions": true,
+    "firestoreRules": true,
+    "firestoreIndexes": true,
+    "rulesTests": true,
+    "appsScript": true,
+    "seedScripts": true,
+    "adminBootstrap": true,
+    "pagesAssemble": true
+  },
+  "previousBrand": {
+    "tokens": ["OldBrand Studio", "OldBrand", "OBST"],
+    "domains": ["oldbrand.example", "www.oldbrand.example"],
+    "emails": ["hello@oldbrand.example"],
+    "phones": ["+64 21 000 0000", "0210000000"],
+    "themeClass": "theme-oldbrand",
+    "prodIdDomain": "oldbrand.example",
+    "fingerprintHexes": ["863bff"],
+    "allowPaths": ["whitelabel.md", "CLIENT_ASSUMPTIONS.md", "docs/obsolete/"]
+  },
+  "adminBootstrap": {
+    "email": "alex@acme.example"
+  }
+}

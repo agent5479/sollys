@@ -1,0 +1,35 @@
+name: Toolkit CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm run validate:example
+      - run: npm run generate:example
+      - name: Brand check (clean must pass)
+        run: npx tsx src/cli.ts check-brand --previous examples/previous-brand.tokens.json --root fixtures/brand-clean
+      - name: Brand check (leaky must fail)
+        run: |
+          if npx tsx src/cli.ts check-brand --previous examples/previous-brand.tokens.json --root fixtures/brand-leak --allow-path allowed/; then
+            echo "Expected brand-leak fixture to fail" >&2
+            exit 1
+          fi
+      - run: npm run check-seo:fixtures
+      - run: npm run test:unit
+      - name: Playwright @full (optional browser)
+        if: ${{ vars.PLAYWRIGHT_FULL == '1' }}
+        run: |
+          npx playwright install --with-deps chromium
+          E2E_FULL=1 npx playwright test

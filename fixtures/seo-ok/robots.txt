@@ -1,0 +1,6 @@
+# Generated fixture SEO pack
+User-agent: *
+Allow: /
+Disallow: /app/
+
+Sitemap: https://www.acme.example/sitemap.xml

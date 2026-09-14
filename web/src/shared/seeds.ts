@@ -1,0 +1,323 @@
+import type {
+  Booking,
+  Consignment,
+  DemoUser,
+  Depot,
+  OutboxItem,
+  Scan,
+  ShowcaseState,
+  Truck,
+} from "./types";
+
+export const DEMO_PASSWORD = "sollys";
+
+export const depots: Depot[] = [
+  {
+    id: "takaka",
+    name: "Takaka Head Office",
+    address: "98A Commercial Street, Takaka 7110",
+    lat: -40.8536,
+    lng: 172.8076,
+  },
+  {
+    id: "collingwood",
+    name: "Collingwood Depot",
+    address: "Mount Burnett Road, Takaka 7110",
+    lat: -40.678,
+    lng: 172.683,
+  },
+  {
+    id: "richmond",
+    name: "Richmond Depot",
+    address: "32 McPherson Street, Richmond 7020",
+    lat: -41.3394,
+    lng: 173.187,
+  },
+  {
+    id: "blenheim",
+    name: "Blenheim Depot",
+    address: "Riverlands Roadhouse, 3535 State Highway 1, Riverlands 7274",
+    lat: -41.543,
+    lng: 174.005,
+  },
+  {
+    id: "christchurch",
+    name: "Christchurch Depot",
+    address: "9 Sir James Wattie Drive, Hornby, Christchurch 8042",
+    lat: -43.5435,
+    lng: 172.525,
+  },
+];
+
+export const users: DemoUser[] = [
+  {
+    id: "u-admin",
+    email: "admin@demo.sollys.local",
+    password: DEMO_PASSWORD,
+    displayName: "Adele Solly",
+    claim: "admin",
+    depotId: "takaka",
+  },
+  {
+    id: "u-driver",
+    email: "driver.takaka@demo.sollys.local",
+    password: DEMO_PASSWORD,
+    displayName: "Tane Riwaka",
+    claim: "trainer",
+    depotId: "takaka",
+  },
+  {
+    id: "u-client",
+    email: "client@demo.sollys.local",
+    password: DEMO_PASSWORD,
+    displayName: "Golden Bay Feeds",
+    claim: "member",
+    depotId: "takaka",
+  },
+];
+
+export const trucks: Truck[] = [
+  {
+    id: "tk-12",
+    name: "TK-12",
+    capacityKg: 12000,
+    capacityM3: 40,
+    usedKg: 8200,
+    usedM3: 27,
+    run: "Takaka → Richmond",
+    fromDepotId: "takaka",
+    toDepotId: "richmond",
+    departLabel: "Today 06:30",
+  },
+  {
+    id: "nm-04",
+    name: "NM-04",
+    capacityKg: 14000,
+    capacityM3: 48,
+    usedKg: 11000,
+    usedM3: 41,
+    run: "Richmond → Blenheim",
+    fromDepotId: "richmond",
+    toDepotId: "blenheim",
+    departLabel: "Today 10:15",
+  },
+  {
+    id: "ch-09",
+    name: "CH-09",
+    capacityKg: 16000,
+    capacityM3: 52,
+    usedKg: 9000,
+    usedM3: 30,
+    run: "Blenheim → Christchurch",
+    fromDepotId: "blenheim",
+    toDepotId: "christchurch",
+    departLabel: "Today 14:00",
+  },
+  {
+    id: "gb-07",
+    name: "GB-07",
+    capacityKg: 10000,
+    capacityM3: 32,
+    usedKg: 2400,
+    usedM3: 8,
+    run: "Christchurch → Takaka (return)",
+    fromDepotId: "christchurch",
+    toDepotId: "takaka",
+    departLabel: "Tomorrow 05:00",
+  },
+];
+
+export const consignments: Consignment[] = [
+  {
+    id: "c-4821",
+    trackingCode: "SL-4821",
+    description: "Pallet of stock feed",
+    status: "in_transit",
+    originDepotId: "takaka",
+    destDepotId: "richmond",
+    truckId: "tk-12",
+    weightKg: 820,
+    cubeM3: 2.4,
+  },
+  {
+    id: "c-4822",
+    trackingCode: "SL-4822",
+    description: "18 m steel lengths",
+    status: "at_depot",
+    originDepotId: "richmond",
+    destDepotId: "christchurch",
+    truckId: "ch-09",
+    weightKg: 4100,
+    cubeM3: 6,
+  },
+  {
+    id: "c-4823",
+    trackingCode: "SL-4823",
+    description: "Bagged fertiliser",
+    status: "in_transit",
+    originDepotId: "takaka",
+    destDepotId: "blenheim",
+    truckId: "nm-04",
+    weightKg: 1600,
+    cubeM3: 3.1,
+  },
+  {
+    id: "c-4901",
+    trackingCode: "SL-4901",
+    description: "Livestock crate (sheep)",
+    status: "delivered",
+    originDepotId: "collingwood",
+    destDepotId: "richmond",
+    truckId: "tk-12",
+    weightKg: 2200,
+    cubeM3: 8,
+  },
+  {
+    id: "c-4902",
+    trackingCode: "SL-4902",
+    description: "Bulk dolomite",
+    status: "in_transit",
+    originDepotId: "takaka",
+    destDepotId: "christchurch",
+    truckId: "ch-09",
+    weightKg: 5400,
+    cubeM3: 12,
+  },
+  {
+    id: "c-5108",
+    trackingCode: "SL-5108",
+    description: "General pallet — on-farm delivery",
+    status: "at_depot",
+    originDepotId: "blenheim",
+    destDepotId: "christchurch",
+    truckId: "ch-09",
+    weightKg: 410,
+    cubeM3: 1.2,
+  },
+  {
+    id: "c-5110",
+    trackingCode: "SL-5110",
+    description: "Return empties",
+    status: "in_transit",
+    originDepotId: "richmond",
+    destDepotId: "takaka",
+    truckId: "gb-07",
+    weightKg: 300,
+    cubeM3: 4,
+  },
+  {
+    id: "c-5204",
+    trackingCode: "SL-5204",
+    description: "Container destuff — MPI facility",
+    status: "at_depot",
+    originDepotId: "christchurch",
+    destDepotId: "blenheim",
+    truckId: "nm-04",
+    weightKg: 2800,
+    cubeM3: 9,
+  },
+];
+
+/** Takaka Hill → Richmond → Blenheim → Christchurch corridor. */
+export const ROUTE_POINTS: Array<{ lat: number; lng: number; label: string }> = [
+  { lat: -40.8536, lng: 172.8076, label: "Takaka" },
+  { lat: -40.99, lng: 172.89, label: "Takaka Hill" },
+  { lat: -41.27, lng: 173.28, label: "Nelson approach" },
+  { lat: -41.3394, lng: 173.187, label: "Richmond" },
+  { lat: -41.45, lng: 173.7, label: "Whangamoa" },
+  { lat: -41.543, lng: 174.005, label: "Blenheim" },
+  { lat: -42.4, lng: 173.4, label: "Kaikōura coast" },
+  { lat: -43.5435, lng: 172.525, label: "Christchurch" },
+];
+
+function isoHoursAgo(h: number): string {
+  return new Date(Date.now() - h * 3600 * 1000).toISOString();
+}
+
+export const scans: Scan[] = [
+  {
+    id: "s-1",
+    consignmentId: "c-4821",
+    driverId: "u-driver",
+    lat: -40.8536,
+    lng: 172.8076,
+    at: isoHoursAgo(6),
+    labelCode: "SL-4821",
+    note: "Loaded Takaka",
+  },
+  {
+    id: "s-2",
+    consignmentId: "c-4821",
+    driverId: "u-driver",
+    lat: -40.99,
+    lng: 172.89,
+    at: isoHoursAgo(4.5),
+    labelCode: "SL-4821",
+    note: "Takaka Hill",
+  },
+  {
+    id: "s-3",
+    consignmentId: "c-4821",
+    driverId: "u-driver",
+    lat: -41.27,
+    lng: 173.28,
+    at: isoHoursAgo(1.5),
+    labelCode: "SL-4821",
+    note: "Nelson approach",
+  },
+  {
+    id: "s-4",
+    consignmentId: "c-4823",
+    driverId: "u-driver",
+    lat: -41.3394,
+    lng: 173.187,
+    at: isoHoursAgo(3),
+    labelCode: "SL-4823",
+    note: "Hubbed Richmond",
+  },
+  {
+    id: "s-5",
+    consignmentId: "c-4901",
+    driverId: "u-driver",
+    lat: -41.3394,
+    lng: 173.187,
+    at: isoHoursAgo(20),
+    labelCode: "SL-4901",
+    note: "Delivered Richmond",
+  },
+  {
+    id: "s-6",
+    consignmentId: "c-4902",
+    driverId: "u-driver",
+    lat: -41.543,
+    lng: 174.005,
+    at: isoHoursAgo(2),
+    labelCode: "SL-4902",
+    note: "Through Blenheim",
+  },
+];
+
+export const bookings: Booking[] = [];
+
+export const outbox: OutboxItem[] = [
+  {
+    id: "m-seed",
+    at: isoHoursAgo(8),
+    subject: "Showcase ready",
+    body: "Pitch outbox is a stub. Live mail waits on Apps Script.",
+    to: "sales@sollys.co.nz",
+  },
+];
+
+export function seedState(): ShowcaseState {
+  return {
+    users: structuredClone(users),
+    depots: structuredClone(depots),
+    consignments: structuredClone(consignments),
+    scans: structuredClone(scans),
+    trucks: structuredClone(trucks),
+    bookings: structuredClone(bookings),
+    outbox: structuredClone(outbox),
+    pendingScans: [],
+  };
+}

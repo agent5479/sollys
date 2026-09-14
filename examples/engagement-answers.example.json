@@ -1,0 +1,70 @@
+{
+  "stack": "booking",
+  "surfaces": {
+    "marketing": true,
+    "memberApp": true,
+    "staffConsole": true,
+    "emailCalendar": true,
+    "manualPayments": true
+  },
+  "mPatterns": ["M22", "M23"],
+  "terminology": {
+    "admin": "Owner",
+    "trainer": "Coach",
+    "member": "Member",
+    "booking": "Session",
+    "entitySingular": "class"
+  },
+  "brand": {
+    "name": "Acme Movement Studio",
+    "shortName": "Acme",
+    "tagline": "Move with intent",
+    "contactName": "Alex Rivera",
+    "contactRole": "Founder / Coach",
+    "notifyEmail": "hello@acme.example",
+    "phone": "+64 21 555 0100",
+    "phoneHref": "tel:+64215550100",
+    "venues": [
+      {
+        "name": "Acme Studio — Ponsonby",
+        "address": "12 Example St, Ponsonby, Auckland 1011",
+        "geo": { "lat": -36.8485, "lng": 174.7633 }
+      }
+    ],
+    "origin": "https://www.acme.example",
+    "appBase": "/app/"
+  },
+  "style": {
+    "themeClass": "theme-acme",
+    "ink": "#1A1A1A",
+    "paper": "#F7F5F2",
+    "muted": "#6B6560",
+    "line": "#D9D2C9",
+    "accent": "#C45C26",
+    "fonts": {
+      "display": "Fraunces",
+      "body": "Source Sans 3",
+      "source": "Google Fonts"
+    }
+  },
+  "geoHint": "Auckland, New Zealand",
+  "industryNotes": "Small-group movement coaching and drop-in sessions.",
+  "assumptionsAuthorized": false,
+  "infraBoundaryConfirmed": true,
+  "infra": {
+    "firebaseProjectId": "acme-studio-prod",
+    "hosting": {
+      "provider": "GitHub Pages",
+      "customDomain": "www.acme.example"
+    },
+    "aiCrawlerPolicy": {
+      "allowCitationBots": true,
+      "disallowTrainingBots": false,
+      "notes": "Allow AI citation/search bots for GEO visibility"
+    }
+  },
+  "templateLineage": {
+    "upstreamRepo": "https://github.com/example/booking-product-core",
+    "upstreamCommit": "abc1234def5678901234567890abcdef12345678"
+  }
+}

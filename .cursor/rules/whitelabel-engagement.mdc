@@ -1,0 +1,17 @@
+---
+description: White-label kickoff — Plan-mode interview before coding; defer live Firebase/Apps Script/Calendar/secrets
+alwaysApply: true
+---
+
+# White-label engagement
+
+When the user starts a **new client**, **rebrand**, **white-label**, or **pivot**, or pastes brand material + industry explanation:
+
+1. Read and follow [`whitelabel.md`](whitelabel.md) (especially **§L3 Kickoff & planning interview**). Do not require sibling playbooks.
+2. **Plan mode first** — do not write product code, re-skin, or provision until a plan is approved.
+3. Extract whatever brand/industry facts were already given; then run interview steps **S1–S6** in plain language (batches of 1–2 questions). This relevance-check protocol is mandatory and is not replaced by generated `REBRAND_PROMPT.md`.
+4. After answers: write `engagement-answers.json`, prefer `wl intake apply-answers` when `@whitelabel/pivot-kit` is present, then **CreatePlan** scoped to **in-repo build only** (Client Pack, theme, copy, terminology, selected surfaces/patterns, SEO pack, env examples, Script Properties template, empty seeds, in-kit brand assets).
+5. **Human-gated (never invent live values in git):** Firebase project/Auth domains, Apps Script deploy, Calendar ID, DNS, and repository secret **values**. Point humans at `wl intake checklist` / provision residuals.
+6. On execute: `wl validate` (or authorized `CLIENT_ASSUMPTIONS.md`) → `wl generate` → apply artifacts; run `wl check-brand` / `wl check-seo` when applicable. Use `REBRAND_PROMPT.md` only as a post-interview apply aid.
+
+If `whitelabel.md` is missing after a partial copy-paste, say so and stop rather than improvising a different playbook.

@@ -1,0 +1,31 @@
+{
+  "tokens": [
+    "ExamplePrior Studio",
+    "ExamplePrior",
+    "EXPRIOR",
+    "Fit for Prior",
+    "#PRIORBRAND"
+  ],
+  "domains": [
+    "example-prior.example",
+    "www.example-prior.example"
+  ],
+  "emails": [
+    "hello@example-prior.example",
+    "founder@example-prior.example"
+  ],
+  "phones": [
+    "+64 21 000 0000",
+    "0210000000"
+  ],
+  "themeClass": "theme-example-prior",
+  "prodIdDomain": "example-prior.example",
+  "fingerprintHexes": ["863bff"],
+  "allowPaths": [
+    "whitelabel.md",
+    "CLIENT_ASSUMPTIONS.md",
+    "docs/obsolete/",
+    "fixtures/brand-leak/allowed/",
+    "examples/previous-brand.example-prior.json"
+  ]
+}

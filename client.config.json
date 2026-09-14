@@ -1,0 +1,271 @@
+{
+  "brand": {
+    "name": "Sollys",
+    "shortName": "Sollys",
+    "contactName": "Merv Solly",
+    "contactRole": "Owner",
+    "contactBio": [
+      "Family-owned South Island freight, contracting, and earthmoving since 1928, with depots from Golden Bay through to Christchurch."
+    ],
+    "legalEntityName": "Sollys Freight 1978 Ltd",
+    "copyrightText": "© Sollys Freight 1978 Ltd",
+    "notifyEmail": "sales@sollys.co.nz",
+    "phone": "+64 3 525 9843",
+    "phoneHref": "tel:+6435259843",
+    "venues": [
+      {
+        "name": "Takaka Head Office",
+        "address": "98A Commercial Street, Takaka 7110",
+        "geo": {
+          "lat": -40.8536,
+          "lng": 172.8076
+        }
+      },
+      {
+        "name": "Collingwood Depot",
+        "address": "Mount Burnett Road, Takaka 7110",
+        "geo": {
+          "lat": -40.678,
+          "lng": 172.683
+        }
+      },
+      {
+        "name": "Rockville Depot",
+        "address": "545 Collingwood Bainham Main Road, Rockville 7073",
+        "geo": {
+          "lat": -40.641,
+          "lng": 172.661
+        }
+      },
+      {
+        "name": "Richmond Depot",
+        "address": "32 McPherson Street, Richmond 7020",
+        "geo": {
+          "lat": -41.3394,
+          "lng": 173.187
+        }
+      },
+      {
+        "name": "Christchurch Depot",
+        "address": "9 Sir James Wattie Drive, Hornby, Christchurch 8042",
+        "geo": {
+          "lat": -43.5435,
+          "lng": 172.525
+        }
+      },
+      {
+        "name": "Blenheim Depot",
+        "address": "Riverlands Roadhouse, 3535 State Highway 1, Riverlands 7274",
+        "geo": {
+          "lat": -41.543,
+          "lng": 174.005
+        }
+      }
+    ],
+    "origin": "https://www.sollys.co.nz",
+    "appBase": "/app/",
+    "assets": {
+      "logoLight": "public/brand/logo-light.svg",
+      "logoDark": "public/brand/logo-dark.svg",
+      "favicon": "public/brand/favicon.svg",
+      "appIcon": "public/brand/sollys-logo-source.png",
+      "logoWidth": 160,
+      "logoHeight": 32
+    },
+    "tagline": "Enable the success of others by connecting people and products",
+    "hashtag": "#Sollys",
+    "voice": "Practical, service-first, rural South Island freight. Direct sentences. A can-do attitude without corporate jargon. Health and safety sits in front of the work.",
+    "voiceSamples": [
+      "Scan the consignment. The phone tags where it is. Paper stays in the cab, not in the system.",
+      "Anyone can move freight. The difference is knowing where it is, and getting it there in one piece."
+    ],
+    "social": {
+      "facebook": "https://www.facebook.com/profile.php?id=61557223335051",
+      "instagram": "https://www.instagram.com/sollys.nz/",
+      "youtube": "https://www.youtube.com/channel/UCf_ywbETh8Bj9wqDKyezqdw"
+    }
+  },
+  "style": {
+    "themeClass": "theme-sollys",
+    "ink": "#1C3D1A",
+    "paper": "#F4F1E8",
+    "muted": "#5A6B4A",
+    "line": "#C9C4B0",
+    "accent": "#C5D44A",
+    "primary": "#1C3D1A",
+    "secondary": "#D4B20A",
+    "fonts": {
+      "display": "Oswald",
+      "body": "Source Sans 3",
+      "source": "Google Fonts"
+    },
+    "radii": "marketing square; app cards 8px",
+    "motion": "200ms ease-out fades",
+    "iconApproach": "currentColor inline SVG"
+  },
+  "language": {
+    "roleLabels": {
+      "admin": "Admin",
+      "trainer": "Driver",
+      "member": "Client"
+    },
+    "classCatalog": [],
+    "paymentInstructions": ""
+  },
+  "locale": {
+    "timeZone": "Pacific/Auckland",
+    "locale": "en-NZ",
+    "currency": "NZD",
+    "functionsRegion": "australia-southeast1",
+    "seasonModel": {
+      "mode": "manual",
+      "notes": "Freight runs, not studio terms."
+    },
+    "operatingHours": "Confirm with the local depot — hours vary by site."
+  },
+  "infra": {
+    "firebaseProjectId": "sollys-prod",
+    "hosting": {
+      "provider": "GitHub Pages",
+      "customDomain": "www.sollys.co.nz",
+      "dnsOwner": "Sollys / client IT (human-gated)"
+    },
+    "aiCrawlerPolicy": {
+      "allowCitationBots": true,
+      "disallowTrainingBots": false,
+      "notes": "Allow AI citation/search bots for GEO visibility on the pitch marketing pages."
+    },
+    "signInPath": "signin/",
+    "callableOrigins": [
+      "https://www.example.com",
+      "http://localhost:5173",
+      "http://127.0.0.1:5173"
+    ],
+    "packageIdentity": {
+      "npmRoot": "sollys",
+      "npmApps": "sollys-apps",
+      "npmFunctions": "sollys-functions",
+      "sharedAlias": "@sollys/shared"
+    },
+    "calendarStrategy": "Not used as source of truth. Email/calendar are in-app stubs for this pitch."
+  },
+  "seo": {
+    "siteTitle": "Sollys | Freight tracking",
+    "siteDescription": "Scan consignments on the phone, tag GPS from the cab, and look up where freight is — replacing paper locating across Sollys South Island depots.",
+    "defaultOgImage": "/brand/og-default.svg",
+    "routes": [
+      {
+        "path": "/",
+        "title": "Sollys | Freight tracking",
+        "description": "Scan consignments, tag GPS from the cab, and look up where freight is."
+      },
+      {
+        "path": "/track/",
+        "title": "Track a consignment | Sollys",
+        "description": "Enter a tracking code to see the last known location of a Sollys consignment."
+      }
+    ]
+  },
+  "templateLineage": {
+    "upstreamCommit": "0000000000000000000000000000000000000000",
+    "toolkitVersion": "0.1.0",
+    "forkedAt": "2026-09-14T10:10:39.746Z",
+    "upstreamRepo": "local:@whitelabel/pivot-kit"
+  },
+  "features": {
+    "stack": "hybrid",
+    "surfaces": {
+      "marketing": true,
+      "memberApp": true,
+      "staffConsole": true,
+      "emailCalendar": true,
+      "manualPayments": false
+    },
+    "mPatterns": [
+      "M13",
+      "M17",
+      "M18",
+      "M21",
+      "M22",
+      "M23"
+    ],
+    "terminology": {
+      "admin": "Admin",
+      "trainer": "Driver",
+      "member": "Client",
+      "booking": "Booking",
+      "entitySingular": "consignment",
+      "entityPlural": "consignments"
+    },
+    "assumptionsAuthorized": true,
+    "infraBoundaryConfirmed": true
+  },
+  "productCore": {
+    "marketing": true,
+    "memberApp": true,
+    "staffConsole": true,
+    "sharedClient": true,
+    "functions": true,
+    "firestoreRules": true,
+    "firestoreIndexes": true,
+    "rulesTests": true,
+    "appsScript": true,
+    "seedScripts": true,
+    "adminBootstrap": true,
+    "pagesAssemble": true
+  },
+  "previousBrand": {
+    "tokens": [
+      "Acme Movement Studio",
+      "Acme Movement Ltd",
+      "Acme Movement",
+      "Acme",
+      "#AcmeMove",
+      "theme-acme",
+      "OldBrand Studio",
+      "OldBrand",
+      "OBST",
+      "ExamplePrior Studio",
+      "ExamplePrior",
+      "EXPRIOR",
+      "Fit for Prior",
+      "#PRIORBRAND"
+    ],
+    "domains": [
+      "acme.example",
+      "www.acme.example",
+      "oldbrand.example",
+      "www.oldbrand.example",
+      "example-prior.example",
+      "www.example-prior.example"
+    ],
+    "emails": [
+      "hello@acme.example",
+      "ops@acme.example",
+      "alex@acme.example",
+      "hello@oldbrand.example",
+      "hello@example-prior.example",
+      "founder@example-prior.example"
+    ],
+    "phones": [
+      "+64 21 555 0100",
+      "+64 21 000 0000",
+      "0210000000"
+    ],
+    "themeClass": "theme-acme",
+    "prodIdDomain": "acme.example",
+    "fingerprintHexes": [
+      "863bff",
+      "C45C26"
+    ],
+    "allowPaths": [
+      "whitelabel.md",
+      "CLIENT_ASSUMPTIONS.md",
+      "docs/obsolete/",
+      "examples/",
+      "fixtures/",
+      ".tmp/",
+      "generated/REBRAND_PROMPT.md"
+    ]
+  }
+}

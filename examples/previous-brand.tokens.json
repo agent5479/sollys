@@ -1,0 +1,15 @@
+{
+  "tokens": ["OldBrand Studio", "OldBrand", "OBST"],
+  "domains": ["oldbrand.example", "www.oldbrand.example"],
+  "emails": ["hello@oldbrand.example"],
+  "phones": ["+64 21 000 0000", "0210000000"],
+  "themeClass": "theme-oldbrand",
+  "prodIdDomain": "oldbrand.example",
+  "fingerprintHexes": ["863bff"],
+  "allowPaths": [
+    "whitelabel.md",
+    "CLIENT_ASSUMPTIONS.md",
+    "docs/obsolete/",
+    "fixtures/brand-leak/allowed/"
+  ]
+}

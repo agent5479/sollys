@@ -1,0 +1,13 @@
+{
+  "marketing": "src",
+  "apps": "apps",
+  "shared": "shared",
+  "functions": "functions",
+  "appsScript": "google-apps-script",
+  "rules": "firestore.rules",
+  "indexes": "firestore.indexes.json",
+  "rulesTests": "firestore-tests",
+  "seedScripts": "functions/scripts",
+  "ciWorkflow": ".github/workflows/pages.yml",
+  "staticRoot": "dist"
+}

@@ -1,0 +1,14 @@
+{
+  "NOTIFY_EMAIL": "sales@sollys.co.nz",
+  "CALENDAR_ID": "",
+  "FUNCTIONS_WEBHOOK_SECRET": "",
+  "AUDIT_SPREADSHEET_ID": "",
+  "BRAND_SHORT": "Sollys",
+  "BRAND_NAME": "Sollys",
+  "CLIENT_ORIGIN": "https://www.sollys.co.nz",
+  "MANAGE_BOOKING_URL": "https://www.sollys.co.nz/app/",
+  "VENUE_DEFAULT": "Takaka Head Office",
+  "PRODID": "-//Sollys//EN",
+  "UID_DOMAIN": "www.sollys.co.nz",
+  "TIME_ZONE": "Pacific/Auckland"
+}

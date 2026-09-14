@@ -1,0 +1,39 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function isAdmin() { return signedIn() && request.auth.token.admin == true; }
+    function isDriver() { return signedIn() && request.auth.token.trainer == true; }
+    function isStaff() { return isAdmin() || isDriver(); }
+
+    match /consignments/{id} {
+      allow read: if true;
+      allow write: if isStaff();
+    }
+    match /scans/{id} {
+      allow read: if true;
+      allow create: if isStaff();
+      allow update, delete: if isAdmin();
+    }
+    match /fleet/{id} {
+      allow read: if signedIn();
+      allow write: if isAdmin();
+    }
+    match /bookings/{id} {
+      allow read: if signedIn() && (isStaff() || resource.data.clientId == request.auth.uid);
+      allow create: if signedIn();
+      allow update, delete: if isAdmin();
+    }
+    match /users/{uid} {
+      allow read: if signedIn() && (isStaff() || request.auth.uid == uid);
+      allow write: if isAdmin();
+    }
+    match /siteContent/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

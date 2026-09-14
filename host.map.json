@@ -1,0 +1,13 @@
+{
+  "marketing": "web",
+  "apps": "web",
+  "shared": "web/src/shared",
+  "functions": "functions",
+  "appsScript": "generated/apps-script",
+  "rules": "firestore.rules",
+  "indexes": "firestore.indexes.json",
+  "rulesTests": "firestore-tests",
+  "seedScripts": "web/src/shared/seeds.ts",
+  "ciWorkflow": ".github/workflows/toolkit-ci.yml",
+  "staticRoot": "web/dist"
+}

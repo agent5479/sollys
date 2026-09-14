@@ -1,0 +1,12 @@
+node_modules/
+dist/
+web/dist/
+.tmp/
+playwright-report/
+test-results/
+*.log
+.env
+.env.local
+*-firebase-adminsdk-*.json
+serviceAccount*.json
+.DS_Store

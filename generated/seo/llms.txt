@@ -1,0 +1,7 @@
+# Sollys
+> Scan consignments on the phone, tag GPS from the cab, and look up where freight is — replacing paper locating across Sollys South Island depots.
+
+Allow AI citation/search bots for GEO visibility on the pitch marketing pages.
+
+Canonical: https://www.sollys.co.nz/
+App (noindex): https://www.sollys.co.nz/app/
