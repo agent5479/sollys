@@ -1,12 +1,16 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-/** Project Pages URL is https://agent5479.github.io/sollys/ */
-const pagesBase = process.env.VITE_BASE ?? (process.env.GITHUB_PAGES === "1" ? "/sollys/" : "/");
+/**
+ * Custom domain (www.sollys.co.nz) serves from site root.
+ * Keep base `/` so CSS/JS resolve at /assets/… — not /sollys/assets/…
+ * (project-pages path breaks once the domain is applied).
+ */
+const base = process.env.VITE_BASE ?? "/";
 
 export default defineConfig({
   plugins: [react()],
-  base: pagesBase,
+  base,
   server: { port: 5173 },
   build: {
     outDir: "dist",
