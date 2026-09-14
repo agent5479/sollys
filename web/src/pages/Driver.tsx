@@ -160,7 +160,7 @@ export function DriverPage() {
   }
 
   return (
-    <Shell noindex>
+    <Shell noindex variant="app">
       {!online ? (
         <div className="banner">Offline — tags save on this phone until signal returns.</div>
       ) : null}
@@ -170,6 +170,9 @@ export function DriverPage() {
           <div>
             <p className="kicker">Driver</p>
             <h1>{user.displayName.split(" ")[0]}</h1>
+            <p className="muted" style={{ margin: "0.35rem 0 0", maxWidth: "28ch" }}>
+              Scan the label, then tag location so customers can track it.
+            </p>
           </div>
           <div className="driver-stat">
             <strong>{mine.length}</strong>

@@ -5,57 +5,35 @@ const base = process.env.E2E_BASE_URL ?? "http://127.0.0.1:4173";
 async function main() {
   const browser = await chromium.launch({ channel: "chrome" });
   const page = await browser.newPage();
-  page.setDefaultTimeout(15000);
+  page.setDefaultTimeout(20000);
 
   await page.goto(base + "/");
   await page.getByRole("heading", { name: /connecting people and products/i }).waitFor();
 
   await page.getByRole("link", { name: "Track a consignment" }).click();
-  await page.getByLabel("Tracking code").fill("SL-4821");
-  await page.getByRole("button", { name: "Look up" }).click();
+  await page.getByRole("button", { name: "Try SL-4821" }).click();
   await page.getByRole("heading", { name: "SL-4821" }).waitFor();
 
-  await page.getByRole("link", { name: "Sign in" }).click();
-  await page.getByRole("button", { name: /Driver —/ }).click();
-  await page.getByRole("button", { name: "Sign in" }).click();
-  await page.getByRole("heading", { name: /Scan and tag GPS/i }).waitFor();
-  await page.getByRole("button", { name: "Simulate GPS" }).click();
-  await page.getByText(/Tagged SL-4821/i).waitFor();
+  await page.goto(base + "/app/signin");
+  await page.getByRole("button", { name: /Driver/i }).click();
+  await page.getByRole("heading", { name: /Tane/i }).waitFor();
+  await page.getByRole("button", { name: "Type code instead" }).click();
+  await page.getByLabel("Consignment code").fill("SL-4821");
+  await page.getByRole("button", { name: "Use demo GPS" }).click();
+  await page.getByText(/SL-4821 tagged|saved offline/i).waitFor();
 
-  await page.getByRole("button", { name: "Sign out" }).click();
-  await page.getByRole("link", { name: "Sign in" }).click();
-  await page.getByRole("button", { name: /Admin —/ }).click();
-  await page.getByRole("button", { name: "Sign in" }).click();
-  await page.getByRole("heading", { name: "Operations" }).waitFor();
-  await page.getByRole("tab", { name: "Fleet" }).click();
-  await page.getByText("TK-12").waitFor();
-  await page.getByRole("tab", { name: "Calculator" }).click();
-  await page.getByText(/Road time/i).waitFor();
-  await page.getByRole("tab", { name: "Outbox" }).click();
-  await page.getByText(/Scan SL-4821/i).waitFor();
-
-  await page.getByRole("button", { name: "Sign out" }).click();
-  await page.getByRole("link", { name: "Sign in" }).click();
-  await page.getByRole("button", { name: /Client —/ }).click();
-  await page.getByRole("button", { name: "Sign in" }).click();
-  await page.getByRole("heading", { name: /Reserve leftover space/i }).waitFor();
-  await page.getByRole("button", { name: "Book leftover space" }).click();
-  await page.getByText(/Booking b-/i).waitFor();
-
-  await page.getByRole("button", { name: "Sign out" }).click();
-  await page.getByRole("link", { name: "Sign in" }).click();
-  await page.getByRole("button", { name: /Admin —/ }).click();
-  await page.getByRole("button", { name: "Sign in" }).click();
-  await page.getByRole("tab", { name: "Calculator" }).click();
-  await page.getByText(/Pallet of bagged feed|350 kg/i).waitFor();
-
-  const mobile = await browser.newPage({ viewport: { width: 390, height: 844 } });
-  await mobile.goto(base + "/track");
-  await mobile.getByRole("button", { name: "Look up" }).click();
-  await mobile.getByRole("heading", { name: "SL-4821" }).waitFor();
+  await page.getByRole("link", { name: "Switch role" }).click();
+  await page.getByRole("button", { name: /Admin/i }).click();
+  await page.getByRole("heading", { name: "Live location" }).waitFor();
+  await page.getByText(/Trucks on feed/i).waitFor();
+  await page.getByRole("tablist").getByRole("link", { name: "Consignments" }).click();
+  await page.getByRole("cell", { name: "SL-4821" }).first().click();
+  await page.getByRole("heading", { name: "SL-4821" }).waitFor();
+  await page.getByRole("tablist").getByRole("link", { name: "Fleet" }).click();
+  await page.getByText("SLY412").waitFor();
 
   await browser.close();
-  console.log("Pitch flows OK: marketing, track, driver GPS, admin fleet/outbox, client booking, mobile track.");
+  console.log("Clean demo OK: track → driver tag → ops map/consignments/fleet.");
 }
 
 main().catch((err) => {

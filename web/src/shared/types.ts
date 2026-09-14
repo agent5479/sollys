@@ -32,6 +32,8 @@ export interface Consignment {
   originDepotId: string;
   destDepotId: string;
   truckId?: string;
+  /** Optional link to their existing TMS / job number — not synced yet. */
+  externalRef?: string;
   weightKg: number;
   cubeM3: number;
 }
@@ -59,6 +61,20 @@ export interface Truck {
   fromDepotId: string;
   toDepotId: string;
   departLabel: string;
+  plate?: string;
+}
+
+export type VehicleGpsSource = "simulated" | "telematics";
+
+export interface VehiclePosition {
+  id: string;
+  truckId: string;
+  label: string;
+  lat: number;
+  lng: number;
+  heading?: number;
+  at: string;
+  source: VehicleGpsSource;
 }
 
 export interface Booking {
@@ -106,6 +122,7 @@ export interface Connector {
     lng: number;
   }): Promise<Scan>;
   listFleet(): Promise<Truck[]>;
+  listVehiclePositions(): Promise<VehiclePosition[]>;
   reserveCapacity(input: {
     truckId: string;
     clientId: string;

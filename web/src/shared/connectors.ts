@@ -1,6 +1,7 @@
-import type { Booking, Connector, Scan, TrackingView } from "./types";
+import type { Booking, Connector, Scan, TrackingView, VehiclePosition } from "./types";
 import { loadState, newId, updateState } from "./store";
 import { brand } from "./labels";
+import { vehicleGpsAdapter } from "./vehicleGps";
 
 const SHOWCASE = import.meta.env.VITE_SHOWCASE_MODE !== "false";
 
@@ -69,6 +70,9 @@ const showcase: Connector = {
   async listFleet() {
     return loadState().trucks;
   },
+  async listVehiclePositions() {
+    return vehicleGpsAdapter.listPositions();
+  },
   async reserveCapacity(input) {
     let booking: Booking | undefined;
     updateState((s) => {
@@ -104,22 +108,17 @@ const showcase: Connector = {
   },
 };
 
+async function notWired(): Promise<never> {
+  throw new Error("Firestore not wired — pitch uses showcase mode");
+}
+
 export const firestoreConnector: Connector = {
-  async listConsignments() {
-    throw new Error("Firestore not wired — pitch uses showcase mode");
-  },
-  async getTracking() {
-    throw new Error("Firestore not wired — pitch uses showcase mode");
-  },
-  async scanConsignment() {
-    throw new Error("Firestore not wired — pitch uses showcase mode");
-  },
-  async listFleet() {
-    throw new Error("Firestore not wired — pitch uses showcase mode");
-  },
-  async reserveCapacity() {
-    throw new Error("Firestore not wired — pitch uses showcase mode");
-  },
+  listConsignments: notWired,
+  getTracking: notWired,
+  scanConsignment: notWired,
+  listFleet: notWired,
+  listVehiclePositions: notWired,
+  reserveCapacity: notWired,
 };
 
 export const connector: Connector = SHOWCASE ? showcase : firestoreConnector;
@@ -133,3 +132,5 @@ export function flushPendingScans(): number {
   });
   return n;
 }
+
+export type { VehiclePosition };

@@ -375,6 +375,197 @@ input, textarea, select {
   font-weight: 600;
 }
 
+.app-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem 1.25rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+}
+.shell-app .site-header { background: #fff; }
+
+.ops-screen {
+  width: min(1100px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 1.25rem 0 2.5rem;
+}
+.ops-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-end;
+  margin-bottom: 1rem;
+}
+.ops-top h1 { margin: 0.2rem 0 0.35rem; }
+.ops-metrics {
+  display: flex;
+  gap: 1rem;
+}
+.ops-metrics div {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.55rem 0.85rem;
+  min-width: 5.5rem;
+  text-align: center;
+}
+.ops-metrics strong {
+  display: block;
+  font-family: Oswald, sans-serif;
+  font-size: 1.45rem;
+  line-height: 1;
+}
+.ops-metrics span {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+.ops-nav {
+  margin-bottom: 1rem;
+}
+.ops-nav .tab {
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 600;
+}
+.ops-nav .tab.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+.layer-toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  align-items: center;
+  margin-bottom: 0.65rem;
+}
+.layer-toggle {
+  display: inline-flex;
+  gap: 0.35rem;
+  align-items: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.layer-note { font-size: 0.85rem; }
+.ops-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.9fr);
+  gap: 1rem;
+  align-items: start;
+}
+.table tr {
+  cursor: pointer;
+}
+.table tr.is-selected {
+  background: #eef3d4;
+}
+.consignment-drawer h2 {
+  margin: 0.35rem 0 0.5rem;
+  font-family: Oswald, sans-serif;
+}
+.drawer-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+.scan-list {
+  margin: 0.75rem 0;
+  padding-left: 1.1rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.demo-menu {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--line);
+}
+.demo-menu-body {
+  margin-top: 0.75rem;
+  display: grid;
+  gap: 0.5rem;
+  max-width: 28rem;
+}
+
+.role-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+.role-card {
+  text-align: left;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem 1.05rem;
+  cursor: pointer;
+  display: grid;
+  gap: 0.25rem;
+  font: inherit;
+  color: inherit;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.role-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-1px);
+}
+.role-card-title {
+  font-family: Oswald, sans-serif;
+  font-size: 1.25rem;
+}
+.role-card-blurb {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 0.35rem;
+}
+
+.try-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.85rem 0 1rem;
+}
+.chip {
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.chip:hover { border-color: var(--primary); }
+.track-form { max-width: 480px; }
+.track-result { margin-top: 1.5rem; }
+.track-error { color: #8a2f1a; font-weight: 600; }
+
+.truck-marker {
+  background: transparent !important;
+  border: 0 !important;
+}
+.truck-marker-inner {
+  background: var(--primary);
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  white-space: nowrap;
+  text-align: center;
+}
+
 .site-footer {
   border-top: 1px solid var(--line);
   padding: 1.5rem 1.25rem 2.5rem;
@@ -390,8 +581,12 @@ input, textarea, select {
   border-radius: 6px;
 }
 
+@media (max-width: 900px) {
+  .ops-split { grid-template-columns: 1fr; }
+}
 @media (max-width: 720px) {
   .site-header { flex-direction: column; align-items: flex-start; }
   .driver-screen { width: min(100%, calc(100% - 1rem)); padding-top: 0.75rem; }
   .scanner { border-radius: 16px; }
+  .ops-metrics { width: 100%; }
 }

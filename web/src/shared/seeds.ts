@@ -80,6 +80,7 @@ export const trucks: Truck[] = [
   {
     id: "tk-12",
     name: "TK-12",
+    plate: "SLY412",
     capacityKg: 12000,
     capacityM3: 40,
     usedKg: 8200,
@@ -92,6 +93,7 @@ export const trucks: Truck[] = [
   {
     id: "nm-04",
     name: "NM-04",
+    plate: "SLY904",
     capacityKg: 14000,
     capacityM3: 48,
     usedKg: 11000,
@@ -104,6 +106,7 @@ export const trucks: Truck[] = [
   {
     id: "ch-09",
     name: "CH-09",
+    plate: "SLY309",
     capacityKg: 16000,
     capacityM3: 52,
     usedKg: 9000,
@@ -116,6 +119,7 @@ export const trucks: Truck[] = [
   {
     id: "gb-07",
     name: "GB-07",
+    plate: "SLY707",
     capacityKg: 10000,
     capacityM3: 32,
     usedKg: 2400,
@@ -136,6 +140,7 @@ export const consignments: Consignment[] = [
     originDepotId: "takaka",
     destDepotId: "richmond",
     truckId: "tk-12",
+    externalRef: "JOB-77821",
     weightKg: 820,
     cubeM3: 2.4,
   },
@@ -147,6 +152,7 @@ export const consignments: Consignment[] = [
     originDepotId: "richmond",
     destDepotId: "christchurch",
     truckId: "ch-09",
+    externalRef: "JOB-77840",
     weightKg: 4100,
     cubeM3: 6,
   },
@@ -158,6 +164,7 @@ export const consignments: Consignment[] = [
     originDepotId: "takaka",
     destDepotId: "blenheim",
     truckId: "nm-04",
+    externalRef: "JOB-77902",
     weightKg: 1600,
     cubeM3: 3.1,
   },

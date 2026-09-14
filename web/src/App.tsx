@@ -31,6 +31,7 @@ export function App() {
       <Route path="/app/signin/" element={<SignInPage />} />
       <Route path="/app/driver" element={<DriverPage />} />
       <Route path="/app/ops" element={<OpsPage />} />
+      <Route path="/app/ops/:section" element={<OpsPage />} />
       <Route path="/app/client" element={<ClientPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

@@ -51,8 +51,9 @@ export function MarketingPage() {
       <section className="section">
         <div className="wrap">
           <div className="demo-note">
-            Showcase mode — simulated Admin, Driver, and Client. Firestore connectors are
-            placeholders. Live project, Auth, and mail stay off git.
+            Showcase — real-time location for consignments and trucks. Your existing freight system
+            stays in charge of jobs; we add where things are. Firestore and live telematics stay
+            placeholders for now.
           </div>
         </div>
       </section>

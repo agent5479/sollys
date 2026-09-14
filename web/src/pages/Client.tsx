@@ -42,7 +42,7 @@ export function ClientPage() {
   }
 
   return (
-    <Shell noindex>
+    <Shell noindex variant="app">
       <section className="section">
         <div className="wrap">
           <p className="kicker">Client</p>
