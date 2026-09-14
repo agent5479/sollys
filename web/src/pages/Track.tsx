@@ -68,7 +68,7 @@ export function TrackPage() {
                 )}
               </div>
               <div>
-                <MapPins scans={view.scans} />
+                <MapPins scans={view.scans} height={300} />
                 <ul>
                   {[...view.scans].reverse().map((s) => (
                     <li key={s.id}>
